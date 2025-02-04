@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import "tailwindcss";
+
+.bgImage{
+    /* background-image: url(../public/image\ 1.png); */
+    animation-name: changeingImages;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    
+}
+
+@keyframes changeingImages{
+    0%{
+        background: url(../public/image\ 1.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    25%{
+        background: url(../public/image\ 2.png);
+        background-repeat: no-repeat;
+        background-position: center;
+
+    }
+    50%{
+        background: url(../public/image\ 3.png);
+        background-repeat: no-repeat;
+        background-position: center;
+
+    }
+    75%{
+        background: url(../public/image\ 4.png);
+        background-repeat: no-repeat;
+        background-position: center;
+
+    }
+    100%{
+        background: url(../public/image\ 1.png);
+        background-repeat: no-repeat;
+        background-position: center;
+
+    }
+
+}
+
+.danceingScript{
+    font-family:'Dancing Script';
+}
+
+::placeholder{
+    color: #a8a8a8;
+}
