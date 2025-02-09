@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Login from "./Login"
+import Login from "./Components/Login"
 import { MyProvider } from "./Mycontext"
-import Signup from "./Signup"
+import Signup from "./Components/Signup"
 
 
 function App() {

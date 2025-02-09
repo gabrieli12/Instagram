@@ -2,7 +2,7 @@ import React from 'react'
 import Footer from './Footer'
 import { Link } from 'react-router-dom'
 import { useContext , useState } from 'react'
-import { Mycontext } from './Mycontext'
+import { Mycontext } from '../Mycontext'
 
 
 function Login() {

@@ -1,14 +1,16 @@
 import React, { useState , useContext} from 'react'
 import Footer from './Footer'
 import { Link } from 'react-router-dom'
-import { Mycontext } from './Mycontext'
+import { Mycontext } from '../Mycontext'
+import {useForm} from "react-hook-form"
 
 function Signup() {
-    const { addInfo, updateInputValues, submit } = useContext(Mycontext)
+    const { addInfo, updateInputValues, submit ,regEmailRef , regPasswordlRef , regNameRef,regUsernameRef   } = useContext(Mycontext)
    
+    const {register , handleSubmit , formState:{errors}} = useForm()
 
-
-
+    
+    console.log(errors)
 
 
 
@@ -25,18 +27,23 @@ function Signup() {
                                 <h1 className='danceingScript font-bold text-[3em]'>Intagram</h1>
                                 <p className=' font-medium max-w-[16rem] text-center text-[#747478]'>Sign up to see photos and videos from your friends.</p>
                             </div>
-                            <form className='flex flex-col items-center justify-center gap-2 w-full'>
-                                <input onChange={updateInputValues}  className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='email'  type="text" placeholder='Phone number or Email' />
-                                <input onChange={updateInputValues}  className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='password' type="password" placeholder='password' />
-                                <input onChange={updateInputValues}  className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='fullname' type="text" placeholder='Full Name' />
-                                <input onChange={updateInputValues}  className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='username' type="text" placeholder='Username' />
+                            <form onSubmit={handleSubmit((data)=>{
+                                console.log(data)
+                            })} className='flex flex-col items-center justify-center gap-2 w-full'>
+                                <input  ref={regEmailRef}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='email' {...register("email" , {required:"This Is Required"})}  type="text" placeholder='Phone number or Email' />
+                                <input ref={regPasswordlRef} {...register("password",{required:"Tis is required",minLength:{
+                                    value:6,
+                                    message:"Your password is to short and easy to guess"
+                                }} )}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='password' type="password" placeholder='password' />
+                                <input ref={regNameRef}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='fullname' type="text" placeholder='Full Name' />
+                                <input ref={regUsernameRef}  className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='username' type="text" placeholder='Username' />
                                 <div className='flex flex-col items-center gap-4'>
                                     <p className='max-w-[17rem] text-[0.8em] text-center text-[#acacac]'>People who use our service may have uploaded your contact information to Instagram. <a href="https://www.facebook.com/help/instagram/261704639352628" className='text-[#a2c6ff]'>Learn More</a></p>
 
                                     <p className='max-w-[15rem]  text-[0.8em] text-center text-[#acacac]'>By signing up, you agree to our <a href="https://help.instagram.com/581066165581870/?locale=en_US" className='text-[#a2c6ff]'>Terms </a>, 
                                     <a href="https://www.facebook.com/privacy/policy" className='text-[#a2c6ff]'> Privacy </a> , <a href="https://www.facebook.com/privacy/policy" className='text-[#a2c6ff]'> Policy </a> and <a href="https://privacycenter.instagram.com/policies/cookies/" className='text-[#a2c6ff]'>Cookies Policy </a></p>
                                 </div>
-                                <button onClick={submit} className='mt-2 bg-[#0a69ad] p-1 rounded-lg font-bold text-[#ffffff73] w-full'>Sign Up</button>
+                                <button  className='mt-2 bg-[#0a69ad] p-1 rounded-lg font-bold text-[#ffffff73] w-full'>Sign Up</button>
                             </form>
                             
                             
