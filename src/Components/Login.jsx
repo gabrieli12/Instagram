@@ -1,8 +1,9 @@
 import React from 'react'
 import Footer from './Footer'
 import { Link } from 'react-router-dom'
-import { useContext , useState } from 'react'
+import { useContext , useState ,useRef } from 'react'
 import { Mycontext } from '../Mycontext'
+import {useForm} from "react-hook-form"
 
 
 function Login() {
@@ -13,6 +14,14 @@ function Login() {
 
     //errors
     const[error , setError] = useState(false)
+    //useForms//
+    const {register , handleSubmit} = useForm()
+    ////////////
+
+    //useRef
+    const logPasswordRef = useRef()
+    
+    ////
 
     const handleEmailChange = (e) =>{
         setEmail(e.target.value)
@@ -55,6 +64,7 @@ function Login() {
         setEmail("")
         setPassword("")
         setCountChar(0)
+        
 
 
     }
@@ -63,24 +73,34 @@ function Login() {
     <>
     <section className='bg-black w-full h-screen'>
         <div className='w-full flex h-[90%] items-center justify-center'>
-            <div className='flex justify-center '>
-                <div className="bg-[url(../public/frame.png)] inline-block w-[440px] h-[630px] bg-no-repeat bg-center bg-cover relative">
+            <div className='flex justify-center  '>
+                <div className=" hidden bg-[url(../public/frame.png)] w-[440px] h-[630px] bg-no-repeat bg-center bg-cover relative md:block">
                         <div className='bgImage w-[75%] h-[92%] absolute bg-no-repeat bg-center right-2 top-1'></div>
                 </div>
 
                 <div className='flex flex-col gap-3'>
-                    <div className='text-white border-1 border-[#363636]  flex flex-col items-center justify-center px-7 pt-5 gap-7 pb-6' >
+                    <div className='text-white md:border-1 md:border-[#363636]  flex flex-col items-center justify-center px-7 pt-5 gap-7 pb-6' >
                         <h1 className='danceingScript font-bold text-[3em]'>Intagram</h1>
-                        <form className='flex flex-col items-center justify-center gap-2 w-full'>
-                            <input onChange={handleEmailChange} value={email} className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' type="text" placeholder='Phone number,username,or email' />
-                            <input onChange={handlePassChange} value={password} className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' type="password" placeholder='Password' />
+                        <form onSubmit={handleSubmit((data)=>{
+                            console.log(data)
+                        })} className='flex flex-col items-center justify-center gap-2 w-full'>
+
+
+                            <input {...register("LogInEmail" , {required:true})} onChange={handleEmailChange} value={email} className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' type="text" placeholder='Phone number,username,or email' />
+                            
+
+                            <input {...register("loginpassword", {required:"This is required"})} ref={logPasswordRef} onChange={handlePassChange} value={password} className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' type="password" placeholder='Password' />
+
+
                             <button onClick={(e)=>{
                                 if(countChar>0){
                                     return logIn(e)
                                 }else{
                                     changeRestart(e)
                                 }
-                            }} className={`mt-2  ${countChar>0 ? "bg-[#0093f5] text-white cursor-pointer" : "text-[#ffffff73] bg-[#0a69ad]"}   p-1 rounded-lg font-bold  w-full`}>Log in</button>
+                            }} className={`mt-2  ${logPasswordRef.current?.value.length > 6 ? "bg-[#0093f5] text-white cursor-pointer" : "text-[#ffffff73] bg-[#0a69ad]"}   p-1 rounded-lg font-bold  w-full`}>Log in</button>
+
+
                         </form>
                         <div className='flex items-center gap-5 w-full'>
                             <hr className='w-[50%] text-[#363636]' />
@@ -91,7 +111,7 @@ function Login() {
                         <p className={`${error == false && "hidden"} text-red-500 text-[0.9em] max-w-[20rem] text-center`}>Sorry, your password was incorrect. Please double-check your password.</p>
                         <a href="#">Forgot password?</a>
                     </div>
-                    <div className='border-1 border-[#363636] flex items-center justify-center px-15 py-5'>
+                    <div className='md:border-1 md:border-[#363636] flex items-center justify-center px-15 py-5'>
                         <p className='text-white'>Don't have an account? <span className='text-[#0a69ad]'><Link to="/signup">Sign Up</Link></span></p>
                     </div>
                     <div className='text-white flex flex-col justify-center items-center gap-1'>

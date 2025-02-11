@@ -1,13 +1,13 @@
 import React, { useState , useContext} from 'react'
 import Footer from './Footer'
-import { Link } from 'react-router-dom'
+import { data, Link } from 'react-router-dom'
 import { Mycontext } from '../Mycontext'
 import {useForm} from "react-hook-form"
 
 function Signup() {
     const { addInfo, updateInputValues, submit ,regEmailRef , regPasswordlRef , regNameRef,regUsernameRef   } = useContext(Mycontext)
    
-    const {register , handleSubmit , formState:{errors}} = useForm()
+    const {register , handleSubmit , formState:{errors}} = useForm() 
 
     
     console.log(errors)
@@ -18,11 +18,11 @@ function Signup() {
 
     return (
         <>
-        <section className='bg-black w-full h-screen'>
+        <section className='bg-black w-full h-full sm:h-screen'>
             <div className='w-full flex h-[90%] items-center justify-center'>
                 <div className=''>
                     <div className='flex flex-col gap-3'>
-                        <div className='text-white border-1 border-[#363636]  flex flex-col items-center justify-center px-12 pt-10 gap-7 pb-12' >
+                        <div className='text-white md:border-1 md:border-[#363636]  flex flex-col items-center justify-center px-12 pt-10 gap-7 pb-12' >
                             <div className='flex flex-col items-center justify-center gap-2'>
                                 <h1 className='danceingScript font-bold text-[3em]'>Intagram</h1>
                                 <p className=' font-medium max-w-[16rem] text-center text-[#747478]'>Sign up to see photos and videos from your friends.</p>
@@ -31,24 +31,34 @@ function Signup() {
                                 console.log(data)
                             })} className='flex flex-col items-center justify-center gap-2 w-full'>
                                 <input  ref={regEmailRef}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='email' {...register("email" , {required:"This Is Required"})}  type="text" placeholder='Phone number or Email' />
-                                <input ref={regPasswordlRef} {...register("password",{required:"Tis is required",minLength:{
+                                <div className='w-full'>
+                                    <p className='text-red-600 text-[0.8em]'>{errors.email?.message}</p>
+                                </div>
+                                <input ref={regPasswordlRef} {...register("password",{required:"Tis Is Required",minLength:{
                                     value:6,
-                                    message:"Your password is to short and easy to guess"
+                                    message:"Your password is to short and easy to guess.Please create a new one"
                                 }} )}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='password' type="password" placeholder='password' />
-                                <input ref={regNameRef}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='fullname' type="text" placeholder='Full Name' />
+                                <div className='w-full'>
+                                    <p className='text-red-600 text-[0.8em] max-w-[15rem]'>{errors.password?.message}</p>
+                                </div>
+                                
+                                <input ref={regNameRef} {...register("fullname" , {required:"This is required",})}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='fullname' type="text" placeholder='Full Name' />
+                                <div className='w-full'>
+                                    <p className='text-red-600 text-[0.8em]'>{errors.fullname?.message}</p>
+                                </div>
                                 <input ref={regUsernameRef}  className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='username' type="text" placeholder='Username' />
                                 <div className='flex flex-col items-center gap-4'>
                                     <p className='max-w-[17rem] text-[0.8em] text-center text-[#acacac]'>People who use our service may have uploaded your contact information to Instagram. <a href="https://www.facebook.com/help/instagram/261704639352628" className='text-[#a2c6ff]'>Learn More</a></p>
 
-                                    <p className='max-w-[15rem]  text-[0.8em] text-center text-[#acacac]'>By signing up, you agree to our <a href="https://help.instagram.com/581066165581870/?locale=en_US" className='text-[#a2c6ff]'>Terms </a>, 
+                                    <p className='max-w-[17rem]  text-[0.8em] text-center text-[#acacac]'>By signing up, you agree to our <a href="https://help.instagram.com/581066165581870/?locale=en_US" className='text-[#a2c6ff]'>Terms </a>, 
                                     <a href="https://www.facebook.com/privacy/policy" className='text-[#a2c6ff]'> Privacy </a> , <a href="https://www.facebook.com/privacy/policy" className='text-[#a2c6ff]'> Policy </a> and <a href="https://privacycenter.instagram.com/policies/cookies/" className='text-[#a2c6ff]'>Cookies Policy </a></p>
                                 </div>
-                                <button  className='mt-2 bg-[#0a69ad] p-1 rounded-lg font-bold text-[#ffffff73] w-full'>Sign Up</button>
+                                <button  className={`mt-2 bg-[#0a69ad]  p-1 rounded-lg font-bold text-[#ffffff73] w-full `}>Sign Up</button>
                             </form>
                             
                             
                         </div>
-                        <div className='border-1 border-[#363636] flex items-center justify-center px-15 py-7'>
+                        <div className='md:border-1 md:border-[#363636] flex items-center justify-center px-15 py-7'>
                             <p className='text-white'>have an account? <span className='text-[#0a69ad]'><Link to="/login">Log In</Link></span></p>
                         </div>
                         <div className='text-white flex flex-col justify-center items-center gap-1'>
@@ -78,8 +88,8 @@ function Signup() {
                     </div>
                 </div>
             </div>
-            <Footer/>
             
+            <Footer/>
         </section>
         </>
       )

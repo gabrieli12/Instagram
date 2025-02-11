@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 @import "tailwindcss";
 
+
 .bgImage{
     /* background-image: url(../public/image\ 1.png); */
     animation-name: changeingImages;
