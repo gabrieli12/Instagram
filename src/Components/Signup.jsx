@@ -1,6 +1,6 @@
 import React, { useState , useContext} from 'react'
 import Footer from './Footer'
-import { data, Link } from 'react-router-dom'
+import { data, Link , useNavigate } from 'react-router-dom'
 import { Mycontext } from '../Mycontext'
 import {useForm} from "react-hook-form"
 import { TiDeleteOutline } from "react-icons/ti";
@@ -9,10 +9,9 @@ import { GrStatusGood } from "react-icons/gr";
 
 function Signup() {
     const { addInfo, updateInputValues, submit    } = useContext(Mycontext)
-   
     
     const { register, handleSubmit, formState: { errors }, watch, reset } = useForm()
-
+    const navigate = useNavigate()
     
     console.log(errors)
 
@@ -33,6 +32,7 @@ function Signup() {
                             <form onSubmit={handleSubmit((data)=>{
                                 
                                 submit(data)
+                                navigate("/login")
                                 reset()
 
                             })} className='flex flex-col items-center justify-center gap-2 w-full'>

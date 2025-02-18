@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect ,useRef } from "react";
+import { useNavigate , Link } from "react-router-dom";
 
 export const Mycontext = createContext()
 
@@ -7,12 +8,12 @@ export const MyProvider = ({ children }) => {
     //
     
     //
-    const [userInfo, setUserInfo] = useState([])
+    const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem("account")) || [])
    
 
-
+    
     const submit = (data) => {
-
+        
 
 
         //////////////////////////////////////
@@ -54,10 +55,16 @@ export const MyProvider = ({ children }) => {
             }
         }])
         
-        
+        // navigate("/login")
         
     }
+
+
     useEffect(() => {
+        localStorage.setItem("account" , JSON.stringify(userInfo))
+        console.log(JSON.parse(localStorage.getItem("account")))
+
+
         console.log(userInfo)
         console.log(userInfo[0])
         for(let element in userInfo[0]){

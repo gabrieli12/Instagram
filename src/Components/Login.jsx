@@ -1,6 +1,6 @@
 import React from 'react'
 import Footer from './Footer'
-import { Link } from 'react-router-dom'
+import { Link , useNavigate } from 'react-router-dom'
 import { useContext, useState, useRef } from 'react'
 import { Mycontext } from '../Mycontext'
 import { useForm } from "react-hook-form"
@@ -11,6 +11,8 @@ function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [countChar, setCountChar] = useState(0)
+
+    const navigate = useNavigate()
 
     //errors
     const [error, setError] = useState(false)
@@ -49,6 +51,7 @@ function Login() {
                     if (element[i].email === data.email && element[i].password === data.password) {
                         alert("login sucssesfully")
                         setError(false)
+                        navigate("/home")
                     } else {
                         console.error("Account doesn't Exist")
                         setError(true)
