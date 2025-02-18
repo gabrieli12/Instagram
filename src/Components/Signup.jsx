@@ -3,11 +3,15 @@ import Footer from './Footer'
 import { data, Link } from 'react-router-dom'
 import { Mycontext } from '../Mycontext'
 import {useForm} from "react-hook-form"
+import { TiDeleteOutline } from "react-icons/ti";
+import { GrStatusGood } from "react-icons/gr";
+<GrStatusGood />
 
 function Signup() {
     const { addInfo, updateInputValues, submit    } = useContext(Mycontext)
    
-    const {register , handleSubmit , formState:{errors}} = useForm() 
+    
+    const { register, handleSubmit, formState: { errors }, watch, reset } = useForm()
 
     
     console.log(errors)
@@ -29,25 +33,72 @@ function Signup() {
                             <form onSubmit={handleSubmit((data)=>{
                                 
                                 submit(data)
+                                reset()
 
                             })} className='flex flex-col items-center justify-center gap-2 w-full'>
-                                <input     className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='email' {...register("email" , {required:"This Is Required"})}  type="text" placeholder='Phone number or Email' />
-                                <div className='w-full'>
-                                    <p className='text-red-600 text-[0.8em]'>{errors.email?.message}</p>
-                                </div>
-                                <input  {...register("password",{required:"Tis Is Required",minLength:{
-                                    value:6,
-                                    message:"Your password is to short and easy to guess.Please create a new one"
-                                }} )}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='password' type="password" placeholder='password' />
-                                <div className='w-full'>
-                                    <p className='text-red-600 text-[0.8em] max-w-[15rem]'>{errors.password?.message}</p>
-                                </div>
-                                
-                                <input  {...register("fullname" , {required:"This is required",})}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='fullname' type="text" placeholder='Full Name' />
-                                <div className='w-full'>
-                                    <p className='text-red-600 text-[0.8em]'>{errors.fullname?.message}</p>
-                                </div>
-                                <input  {...register("username" , {required:"This is required",})}  className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='username' type="text" placeholder='Username' />
+                               <div className='relative w-full'>
+                                        <input className={`border ${errors.email ? "border-[#ff0000]" : "border-[#525252]"}   bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm outline-none`} name='email' {...register("email", {
+                                            required: "This  is required",
+
+                                            validate: (value) => {
+
+                                                // let error = ""
+
+                                                const isEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
+                                                const isPhone = /^\+?\d{9,}$/.test(value);
+
+                                                if (isEmail || isPhone) {
+                                                    return  true
+                                                } else {
+                                                    for (let i of value) {
+                                                        if (!"0123456789".includes(i)) {
+                                                            return  "Enter valid Email"
+                                                        } else {
+                                                            return "Enter valid Number"
+                                                        }
+                                                    }
+                                                }
+
+                                            },
+                                        }
+                                        )} type="text" placeholder='Phone number or Email' />
+                                        <TiDeleteOutline className={`absolute  ${errors.email ? "block" : "hidden"} top-[12px] text-[#ff0000] right-[5px] text-[20px]`} />
+                                        {watch("email") && <GrStatusGood className={`absolute ${errors.email ? "hidden" : "block"}  top-[12px] text-[#00ff0d] right-[5px] text-[20px]`} />}
+                                        {errors.email?.type == "required" && <p className='text-red-600'>{errors.email.message}</p>}
+                                        {errors.email?.type == "validate" && <p className='text-red-600'>{errors.email.message}</p>}
+
+                                    </div>
+
+                                    <div className='relative w-full'>
+                                        <input {...register("password", {
+                                            required: "This is required", minLength: {
+                                                value: 6,
+                                                message: "Create a password at 6 characters long"
+                                            }
+                                        })} className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm outline-none' name='password' type="password" placeholder='password' />
+                                        <TiDeleteOutline className={`absolute  ${errors.password ? "block" : "hidden"} top-[12px] text-[#ff0000] right-[5px] text-[20px]`} />
+                                        {watch("password")?.length > 5 && <GrStatusGood className={`absolute ${errors.password ? "hidden" : "block"}  top-[12px] text-[#00ff0d] right-[5px] text-[20px]`} />}
+
+                                        {errors.password?.type == "minLength" && <p className='text-red-600'>{errors.password.message}</p>}
+                                        {errors.password?.type == "required" && <p className='text-red-600'>{errors.password.message}</p>}
+
+
+                                    </div>
+
+                                    <div className='relative w-full'>
+                                        <input  {...register("fullname")} className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm outline-none' name='fullname' type="text" placeholder='Full Name' />
+                                        {/* <TiDeleteOutline className={`absolute ${errors.fullname ? "block" : "hidden"} text-[#ff0000] top-[12px] right-[5px] text-[20px]`} /> */}
+                                        {watch("fullname") && <GrStatusGood className={`absolute ${errors.fullname ? "hidden" : "block"}  top-[12px] text-[#00ff0d] right-[5px] text-[20px]`} />}
+                                        
+                                    </div>
+
+
+                                    <div className='relative w-full'>
+                                        <input  {...register("username", { required: "This is required" })} className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm outline-none' name='username' type="text" placeholder='Username' />
+                                        <TiDeleteOutline className={`absolute ${errors.username ? "block" : "hidden"} text-[#ff0000] top-[12px] right-[5px] text-[20px]`} />
+                                        {watch("username") && <GrStatusGood className={`absolute ${errors.username ? "hidden" : "block"}  top-[12px] text-[#00ff0d] right-[5px] text-[20px]`} />}
+                                        {errors.username?.type == "required" && <p className='text-red-600'>{errors.username?.message}</p>}
+                                    </div>
                                 <div className='flex flex-col items-center gap-4'>
                                     <p className='max-w-[17rem] text-[0.8em] text-center text-[#acacac]'>People who use our service may have uploaded your contact information to Instagram. <a href="https://www.facebook.com/help/instagram/261704639352628" className='text-[#a2c6ff]'>Learn More</a></p>
 
