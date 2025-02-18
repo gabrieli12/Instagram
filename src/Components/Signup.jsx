@@ -5,13 +5,12 @@ import { Mycontext } from '../Mycontext'
 import {useForm} from "react-hook-form"
 
 function Signup() {
-    const { addInfo, updateInputValues, submit ,regEmailRef , regPasswordlRef , regNameRef,regUsernameRef   } = useContext(Mycontext)
+    const { addInfo, updateInputValues, submit    } = useContext(Mycontext)
    
     const {register , handleSubmit , formState:{errors}} = useForm() 
 
     
     console.log(errors)
-
 
 
 
@@ -28,13 +27,15 @@ function Signup() {
                                 <p className=' font-medium max-w-[16rem] text-center text-[#747478]'>Sign up to see photos and videos from your friends.</p>
                             </div>
                             <form onSubmit={handleSubmit((data)=>{
-                                console.log(data)
+                                
+                                submit(data)
+
                             })} className='flex flex-col items-center justify-center gap-2 w-full'>
-                                <input  ref={regEmailRef}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='email' {...register("email" , {required:"This Is Required"})}  type="text" placeholder='Phone number or Email' />
+                                <input     className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='email' {...register("email" , {required:"This Is Required"})}  type="text" placeholder='Phone number or Email' />
                                 <div className='w-full'>
                                     <p className='text-red-600 text-[0.8em]'>{errors.email?.message}</p>
                                 </div>
-                                <input ref={regPasswordlRef} {...register("password",{required:"Tis Is Required",minLength:{
+                                <input  {...register("password",{required:"Tis Is Required",minLength:{
                                     value:6,
                                     message:"Your password is to short and easy to guess.Please create a new one"
                                 }} )}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='password' type="password" placeholder='password' />
@@ -42,11 +43,11 @@ function Signup() {
                                     <p className='text-red-600 text-[0.8em] max-w-[15rem]'>{errors.password?.message}</p>
                                 </div>
                                 
-                                <input ref={regNameRef} {...register("fullname" , {required:"This is required",})}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='fullname' type="text" placeholder='Full Name' />
+                                <input  {...register("fullname" , {required:"This is required",})}   className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='fullname' type="text" placeholder='Full Name' />
                                 <div className='w-full'>
                                     <p className='text-red-600 text-[0.8em]'>{errors.fullname?.message}</p>
                                 </div>
-                                <input ref={regUsernameRef}  className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='username' type="text" placeholder='Username' />
+                                <input  {...register("username" , {required:"This is required",})}  className='border border-[#525252] bg-[#3636362d] w-full px-3 py-[11px] text-[0.8em] rounded-sm' name='username' type="text" placeholder='Username' />
                                 <div className='flex flex-col items-center gap-4'>
                                     <p className='max-w-[17rem] text-[0.8em] text-center text-[#acacac]'>People who use our service may have uploaded your contact information to Instagram. <a href="https://www.facebook.com/help/instagram/261704639352628" className='text-[#a2c6ff]'>Learn More</a></p>
 
