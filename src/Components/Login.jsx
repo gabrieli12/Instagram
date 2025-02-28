@@ -1,16 +1,18 @@
 import React from 'react'
 import Footer from './Footer'
-import { Link , useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState, useRef } from 'react'
 import { Mycontext } from '../Mycontext'
 import { useForm } from "react-hook-form"
 
 
 function Login() {
-    const { userInfo } = useContext(Mycontext)
+    const { userInfo,currentLogAcc , setCurrentLogAcc } = useContext(Mycontext)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [countChar, setCountChar] = useState(0)
+     
+    
 
     const navigate = useNavigate()
 
@@ -44,25 +46,25 @@ function Login() {
     const logIn = (data) => {
         // e.preventDefault()
 
-        if (userInfo.length > 0) {
-            userInfo.map((element) => {
-                for (let i in element) {
-                    console.log(element[i])
-                    if (element[i].email === data.email && element[i].password === data.password) {
-                        alert("login sucssesfully")
-                        setError(false)
-                        navigate("/home")
-                    } else {
-                        console.error("Account doesn't Exist")
-                        setError(true)
-                    }
-                }
 
 
-            })
-        } else {
-            alert("you haven't registered yet")
+        for (let i in userInfo) {
+            console.log(userInfo[i])
+            if (userInfo[i].email === data.email && userInfo[i].password === data.password) {
+                console.log(i)
+                setCurrentLogAcc(i)
+                alert("login sucssesfully")
+                setError(false)
+                navigate("/home")
+            } else {
+                console.error("Account doesn't Exist")
+                setError(true)
+            }
         }
+
+
+
+
 
 
         // setEmail("")
