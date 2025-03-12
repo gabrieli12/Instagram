@@ -2,14 +2,12 @@ import React from 'react'
 import Footer from './Footer'
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState, useRef } from 'react'
-import { Mycontext } from '../Mycontext'
+import { Mycontext } from '../MyContext'
 import { useForm } from "react-hook-form"
 
 
 function Login() {
     const { userInfo,currentLogAcc , setCurrentLogAcc } = useContext(Mycontext)
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
     const [countChar, setCountChar] = useState(0)
      
     
@@ -23,25 +21,9 @@ function Login() {
 
     ////////////
 
-    //useRef
-    const logPasswordRef = useRef()
+    
 
-    ////
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value)
-
-
-    }
-
-    const handlePassChange = (e) => {
-        setPassword(e.target.value)
-        setCountChar(countChar + 1)
-    }
-
-    const changeRestart = (e) => {
-        e.preventDefault()
-    }
+    
 
     const logIn = (data) => {
         // e.preventDefault()
