@@ -1,41 +1,117 @@
-import React from 'react'
+
 import Asidemenu from './Asidemenu';
 import { useContext } from 'react';
 import { Mycontext } from '../MyContext';
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Mainposts from './Mainposts';
+
+import { FaRegHeart } from "react-icons/fa6";
+import { FaRegComment } from "react-icons/fa";
+import { FaLocationArrow } from "react-icons/fa6";
+
+import { FaArrowAltCircleRight } from "react-icons/fa";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+
+
+import { CiSaveUp2 } from "react-icons/ci";
+import { CiFaceSmile } from "react-icons/ci";
+
+import React from "react";
+import { use } from 'react';
+
+
 
 
 function Home() {
-
-    const { userInfo, currentLogAcc, setCurrentLogAcc } = useContext(Mycontext)
-
+    const { userInfo, setUserInfo, currentLogAcc, setCurrentLogAcc, posts } = useContext(Mycontext)
     const [transform, setTransform] = useState(0)
 
-    
-
-    //
-    console.log(currentLogAcc)
+    // 
+    const [valueOfcoment, setValueOfcoment] = useState('')
 
 
-    // useEffect(() => {
 
-    //     if (transform < 5) {
-    //         setTransform(0)
-    //         setIsLeft(true)
-    //     } else {
-    //         setIsLeft(false)
+
+
+
+    ///////////////////////////////////////////// 
+    // const ArrowLeft = (postIndex,setPostIndex) => {
+
+    //     if(postIndex > 0){
+    //         setPostIndex(postIndex - 1)
     //     }
-    // }, [transform])
+    // }
+
+    // const ArrowRight = (postIndex,setPostIndex,item) => {
+    //     if(postIndex < item.post.length-1){
+    //         setPostIndex(postIndex + 1)
+    //     }
+    // }
+
+    // //////////////////////
+
+    const Addlike = (id, userId) => {
+
+        setUserInfo((prev) => {
+            return {
+                ...prev,
+                [userId]: {
+                    ...prev[userId], post: prev[userId].post.map((postitem) => {
+                        if (postitem.id === id) {
+                            return {
+                                ...postitem,
+                                like: postitem.like + 1
+                            };
+                        }
+                        return postitem;
+                    })
+                }
+            }
+        }
+        )
+    }
+
+    const AddComent = (id, userId) => {
+        setUserInfo((prev) => {
+            return {
+                ...prev,
+                [userId]: {
+                    ...prev[userId], post: prev[userId].post.map((postitem) => {
+                        if (postitem.id === id) {
+                            return {
+                                ...postitem,
+                                comment: [...postitem.comment, { UserName: userInfo[currentLogAcc].username, content: valueOfcoment }]
+                            };
+                        }
+                        return postitem;
+                    })
+                }
+            }
+        }
+        )
+        setValueOfcoment('')
+        console.log(userInfo[userId].post[0].comment)
+    }
+
+
+    const displayComent = (id, userId) => {
+        // return (
+        //     <div>
+
+        //     </div>
+        // )
+
+        // }
+    }
 
     return (
-        <section>
+        <section className='relative'>
             <Asidemenu />
             <div className='gio z-0 flex'>
                 <div className=' flex justify-center items-start gap-20 pt-[20px] w-[86.8%] '>
-                <Mainposts/>
+                    <Mainposts />
                     <div className='w-[319px] h-[546] max-[1346px]:hidden '>
                         <div className='  flex flex-row-reverse items-center justify-between  '>
                             <div className='pl-5  flex flex-row-reverse items-center gap-2'>
@@ -58,9 +134,8 @@ function Home() {
 
                             {
                                 Object.entries(userInfo).slice(0, 5).map(([key, user]) => {
-                                    console.log(user)
                                     return (
-                                        <div className='  flex flex-row-reverse items-center justify-between  '>
+                                        <div key={key} className='  flex flex-row-reverse items-center justify-between  '>
                                             <div className='flex flex-row-reverse items-center gap-2'>
                                                 <img className=' rounded-full border border-[#ffffff] ' width={50} src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" />
                                                 <div className='flex flex-col items-end justify-center'>
@@ -89,9 +164,9 @@ function Home() {
                                 <a className='text-[0.8em] text-[#c7c7c7]' href="https://help.instagram.com/581066165581870/">Terms</a>
                             </div>
                             <div>
-                            <a className='text-[0.8em] text-[#c7c7c7]' href="https://www.instagram.com/explore/locations/">Location · </a>
-                            <a className='text-[0.8em] text-[#c7c7c7]' href="https://www.instagram.com/language/preferences/">Language · </a>
-                            <a className='text-[0.8em] text-[#c7c7c7]' href="https://accountscenter.instagram.com/meta_verified/?entrypoint=web_footer">Meta Verified</a>
+                                <a className='text-[0.8em] text-[#c7c7c7]' href="https://www.instagram.com/explore/locations/">Location · </a>
+                                <a className='text-[0.8em] text-[#c7c7c7]' href="https://www.instagram.com/language/preferences/">Language · </a>
+                                <a className='text-[0.8em] text-[#c7c7c7]' href="https://accountscenter.instagram.com/meta_verified/?entrypoint=web_footer">Meta Verified</a>
                             </div>
 
                             <div className='flex flex-row-reverse gap-1 text-[0.8em] text-[#c7c7c7] mt-[15px]'>
@@ -117,11 +192,9 @@ function Home() {
                             <IoIosArrowDropleftCircle />
                         </div>
 
-
                         <div style={{ transform: `translateX(${transform}px` }} className={` flex items-center justify-center gap-5 duration-500 ${Object.keys(userInfo).length <= 8 ? "w-full" : "w-[700px]"}`}>
                             {
                                 Object.entries(userInfo).map(([key, user]) => {
-                                    console.log(user)
                                     return (
                                         <div className='flex flex-col items-center justify-center' key={key}>
                                             <img className=' rounded-full border border-[#ffffff] ' width={60} src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" />
@@ -130,15 +203,89 @@ function Home() {
                                     )
                                 })
                             }
-
-
                         </div>
                     </div>
+                </div>
+
+            </div>
+            <div className='absolute flex flex-col gap-1 items-center py-3 top-[130px] right-[53%] translate-x-[50%] w-[35%]  '>
+
+
+                {posts.map((item, index) => {
+
+
+                    // console.log(item.userId)
+                    // console.log(item.post)
+                    // console.log(userInfo[item.userId].profilePic)
+                    // console.log(userInfo[item.userId].username)
+                    return (
+                        <div key={index} className='w-full border-b-1 py-2 my-2 relative'>
+                            <div className='w-full flex items-center justify-between px-[12px] my-1'>
+                                <div className='flex items-center gap-[15px]'>
+                                    <img src={userInfo[item.userId].profilePic} alt="profile" className='w-[32px] h-[32px] rounded-full' />
+                                    <p>{userInfo[item.userId].username}</p>
+                                </div>
+
+                                <p>...</p>
+                            </div>
+                            <div className='relative'>
+                                <FaArrowAltCircleRight onClick={() => ArrowRight()} className={`block cursor-pointer absolute text-2xl mx-1 right-0 top-[50%]`} />
+                                <img src={item.imgUrl[0]} alt="post" />
+                                <FaArrowAltCircleLeft onClick={() =>
+                                    ArrowLeft()} className={`block cursor-pointer absolute text-2xl mx-1 left-0 top-[50%]`} />
+                            </div>
+                            <div className='flex items-center justify-between my-2'>
+                                <div className='flex items-center justify-start gap-2'>
+                                    <div className='z-10 relative' onClick={() => Addlike(item.id, item.userId)}><FaRegHeart className='cursor-pointer -z-10 relative' /></div>
+
+                                    <FaRegComment onClick={() => displayComent(item.id, item.userId)} />
+                                    <FaLocationArrow />
+                                </div>
+                                <CiSaveUp2 />
+                            </div>
+                            <div className='my-2'>
+                                <p>{`${item.like} Liked`}</p>
+                            </div>
+                            <div className='flex items-center justify-between'>
+                                <div className='flex items-center gap-2 w-full pr-1'>
+                                    <input type="text" value={valueOfcoment} onChange={(e) => setValueOfcoment(e.target.value)} className='w-full' placeholder='Add a comment...' />
+                                    <button className='cursor-pointer' onClick={() => AddComent(item.id, item.userId)}>Post</button>
+                                </div>
+
+                                <CiFaceSmile />
+                            </div>
+                        </div>
+                    )
+                })}
+
+            </div>
+
+            {/* < div className='fixed top-0 bg-gray-900/50  w-screen h-screen border-1 flex items-center justify-center' >
+                <div className='w-[70%] h-[90%]  opacity-100 bg-white flex '>
+
+                    <img className='w-[50%]' src={`public/profil.rostom2.png`} alt="" />
+                    <div className='w-[50%] h-[100%] flex flex-col'>
+                        <div className='flex w-full items-center justify-between  border-b-1 p-3'>
+                            <div className='flex items-center gap-2'>
+                                <img className='w-[25px] h-[25px] rounded-full' src={`public/profil.rostom2.png`} alt="" />
+                                <p>{userInfo[currentLogAcc].username}</p>
+                            </div>
+                            <p>...</p>
+                        </div>
+                        <div>
+
+                        </div>
+
+
+                    </div>
+
+
 
                 </div>
-            </div>
-        </section>
+            </div> */}
+
+        </section >
     )
 }
 
-export default Home
+export default Home 

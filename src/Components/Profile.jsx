@@ -29,7 +29,7 @@ function Profile() {
                     <div className=' flex  items-start justify-center flex-col gap-7 border-neutral-950  '>
                         <div className='flex items-center justify-end gap-20 pt-6 pl-8'>
                             <div className='justify-items-center max-[830px]:self-end  max-[830px]:justify-self-start  pt-8'>
-                                <img className='w-[150px] h-[150px] max-[830px]:w-[100px]  max-[830px]:h-[100px] rounded-full' src={userInfo[currentLogAcc]?.profilePic} alt="" />
+                                <img className='w-[150px] h-[150px] max-[830px]:w-[100px]  max-[830px]:h-[100px] object-cover  rounded-full' src={userInfo[currentLogAcc]?.profilePic} alt="" />
                             </div>
                             <div className=' flex flex-col max-[830px]:flex-col  items-center justify-start gap-5'>
                                 <div className='flex items-center gap-5'>

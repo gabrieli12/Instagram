@@ -1,6 +1,10 @@
+
+
+// localStorage.clear()
+
 const existAccounts = {
         
-    "wolk1": {
+    wolk1: {
         email: "giorgibibilashvili97@gmail.com",
         password: "bibila1234567",
         fullname: "Giorgi Bibilashvili",
@@ -10,32 +14,49 @@ const existAccounts = {
         profilePic:"profile1.jpeg",
         post: [
             {
-                imgUrl: "black.jpeg",
-                like: 0,
-                comment: [{
-                    user: {
-                        name: "",
-                        context: ""
+                userId:"wolk1",
+                id: 0,
+                imgUrl: ["black.jpeg","bibila.jpg"],
+                like: 10,
+                comment: [
+                     {
+                        // UserName: "",
+                        // content: ""
                     }
-                }],
+                ],
 
             },
             {
-                imgUrl: "bibila.jpg",
-                like: 0,
-                comment: [{
-                    user: {
-                        name: "",
-                        context: ""
-                    }
-                }],
+                userId:"wolk1",
+                id: 1,
+                imgUrl: ["bibila.jpg"],
+                like: 5,
+                comment: [
+                    {
+                    //    UserName: "",
+                    //    content: ""
+                   }
+               ],
 
-            }
+            },
+            {
+                userId:"wolk1",
+                id: 2,
+                imgUrl: ["black.jpeg"],
+                like: 10,
+                comment: [
+                     {
+                        // UserName: "",
+                        // content: ""
+                    }
+                ],
+
+            },
         ]
     },
 
 
-    "wolk2": {
+    wolk2: {
         email: "rostomchagunava1994@gmail.com",
         password: "1234567",
         fullname: "Rostom Chagunava",
@@ -45,32 +66,52 @@ const existAccounts = {
         profilePic:"profil.rostom3.png",
         post: [
             {
-                imgUrl: "profil.rostom2.png",
-                like: 0,
-                comment: [{
-                    user: {
-                        name: "",
-                        context: ""
-                    }
-                }],
+                userId:"wolk2",
+                id: 0,
+                imgUrl:["profil.rostom2.png","profil.rostom1.png"],
+                like: 5,
+                comment: [
+                    {
+                    //    UserName: "",
+                    //    content: ""
+                   }
+               ],
 
             },
             {
-                imgUrl: "profil.rostom1.png",
+                userId:"wolk2",
+                id: 1,
+                imgUrl: ["profil.rostom1.png"],
                 like: 0,
-                comment: [{
-                    user: {
-                        name: "",
-                        context: ""
-                    }
-                }],
+                comment: [
+                    {
+                    //    UserName: "",
+                    //    content: ""
+                   }
+               ],
 
             }
+            ,
+            {
+                userId:"wolk2",
+                id: 2,
+                imgUrl: ["profil.rostom1.png"],
+                like: 0,
+                comment: [
+                    {
+                    //    UserName: "",
+                    //    content: ""
+                   }
+               ],
+
+            }
+            
+           
         ]
     },
 
 
-    "queen": {
+    queen: {
         email: "meliroldan@gmail.com",
         password: "meli123",
         fullname: "Meli Roldan",
@@ -80,32 +121,35 @@ const existAccounts = {
         profilePic:"profile2 meli.jpg",
         post: [
             {
-                imgUrl: "meli.jpg",
-                like: 0,
-                comment: [{
-                    user: {
-                        name: "",
-                        context: ""
-                    }
-                }],
+                userId:"queen",
+                id: 0,
+                imgUrl:[ "meli.jpg","fiso.jpg"],
+                like: 7,
+                comment: [
+                    {
+                    //    UserName: "",
+                    //    content: ""
+                   }
+               ],
 
             },
             {
-                imgUrl: "fiso.jpg",
+                userId:"queen",
+                id: 1,
+                imgUrl:[ "fiso.jpg"],
                 like: 0,
-                comment: [{
-                    user: {
-                        name: "",
-                        context: ""
-                    }
-                }],
-
+                comment: [
+                    {
+                    //    UserName: "",
+                    //    content: ""
+                   }
+               ],
             }
         ]
     },
 
 
-    "wolk4": {
+    wolk4: {
         email: "gabrielmolodini@gmail.com",
         password: "molodini1",
         fullname: "Gabriel Molodini",
@@ -115,25 +159,29 @@ const existAccounts = {
         profilePic:"profile 3 gabriel.jpg",
         post: [
             {
-                imgUrl: "group 4 best.jpg",
-                like: 0,
-                comment: [{
-                    user: {
-                        name: "",
-                        context: ""
-                    }
-                }],
+                userId:"wolk4",
+                id: 0,
+                imgUrl: ["group 4 best.jpg","group 4.jpg"],
+                like: 53,
+                comment: [
+                //     {
+                //        UserName: "",
+                //        content: ""
+                //    }
+               ],
 
             },
             {
-                imgUrl: "group 4.jpg",
+                userId:"wolk4",
+                id: 1,
+                imgUrl: ["group 4.jpg"],
                 like: 0,
-                comment: [{
-                    user: {
-                        name: "",
-                        context: ""
-                    }
-                }],
+                comment: [
+                    {
+                    //    UserName: "",
+                    //    content: ""
+                   }
+               ],
 
             }
         ]

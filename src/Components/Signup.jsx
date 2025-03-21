@@ -13,7 +13,7 @@ function Signup() {
     const { register, handleSubmit, formState: { errors }, watch, reset } = useForm()
     const navigate = useNavigate()
     
-    console.log(errors)
+    // console.log(errors)
 
 
 

@@ -31,9 +31,9 @@ function Login() {
 
 
         for (let i in userInfo) {
-            console.log(userInfo[i])
+            // console.log(userInfo[i])
             if (userInfo[i].email === data.email && userInfo[i].password === data.password) {
-                console.log(i)
+                // console.log(i)
                 setCurrentLogAcc(i)
                 alert("login sucssesfully")
                 setError(false)
