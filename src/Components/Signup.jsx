@@ -1,7 +1,7 @@
 import React, { useState , useContext} from 'react'
 import Footer from './Footer'
 import { data, Link , useNavigate } from 'react-router-dom'
-import { Mycontext } from '../Mycontext'
+import { Mycontext } from '../MyContext'
 import {useForm} from "react-hook-form"
 import { TiDeleteOutline } from "react-icons/ti";
 import { GrStatusGood } from "react-icons/gr";

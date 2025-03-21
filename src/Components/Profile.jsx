@@ -6,10 +6,11 @@ import { useContext } from 'react';
 import { Mycontext } from '../MyContext';
 import { BsPlusLg } from "react-icons/bs";
 import { FaThreads } from "react-icons/fa6";
+import UpdateProfilePic from './UpdateProfilePic';
 
 
 function Profile() {
-    const { userInfo, currentLogAcc, setCurrentLogAcc } = useContext(Mycontext)
+    const { userInfo, currentLogAcc, setCurrentLogAcc, setIsProfPicOpen } = useContext(Mycontext)
 
     // console.log(userInfo[currentLogAcc]?.folower)
     // console.log(userInfo[currentLogAcc])
@@ -18,8 +19,10 @@ function Profile() {
 
     return (
         <>
-            <section className='w-full h-screen overflow-hidden'>
+            <section className='w-full h-screen overflow-hidden relative'>
                 <Asidemenu />
+
+                <UpdateProfilePic />
 
                 {/* <div className='w-[254px] h-screen min-[1468px]:w-[338px] max-[981px]:w-[100px] max-[707px]:hidden'>
 
@@ -29,7 +32,7 @@ function Profile() {
                     <div className=' flex  items-start justify-center flex-col gap-7 border-neutral-950  '>
                         <div className='flex items-center justify-end gap-20 pt-6 pl-8'>
                             <div className='justify-items-center max-[830px]:self-end  max-[830px]:justify-self-start  pt-8'>
-                                <img className='w-[150px] h-[150px] max-[830px]:w-[100px]  max-[830px]:h-[100px] object-cover  rounded-full' src={userInfo[currentLogAcc]?.profilePic} alt="" />
+                                <img className='w-[150px] h-[150px] max-[830px]:w-[100px]  max-[830px]:h-[100px] object-cover  rounded-full cursor-pointer' src={userInfo[currentLogAcc]?.profilePic} alt="" onClick={() => setIsProfPicOpen(true)}/>
                             </div>
                             <div className=' flex flex-col max-[830px]:flex-col  items-center justify-start gap-5'>
                                 <div className='flex items-center gap-5'>

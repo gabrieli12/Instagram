@@ -20,9 +20,7 @@ export const MyProvider = ({ children }) => {
 
     const [posts, setPosts] = useState([])
 
-
-
-
+    const [isProfPicOpen, setIsProfPicOpen] = useState(false);
 
 
     // console.log(Myarr)
@@ -111,10 +109,11 @@ export const MyProvider = ({ children }) => {
         return array;
         
     },[])
+    
 
 
     return (
-        <Mycontext.Provider value={{ userInfo, setUserInfo, submit, currentLogAcc, setCurrentLogAcc,posts }}>
+        <Mycontext.Provider value={{ userInfo, setUserInfo, submit, currentLogAcc, setCurrentLogAcc,posts, isProfPicOpen, setIsProfPicOpen }}>
             {children}
         </Mycontext.Provider>
     )
