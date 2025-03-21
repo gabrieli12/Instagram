@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import existAccounts from "./Userdata";
-import { use } from "react";
+
 
 export const Mycontext = createContext()
 
@@ -21,6 +21,12 @@ export const MyProvider = ({ children }) => {
     const [posts, setPosts] = useState([])
 
     const [isProfPicOpen, setIsProfPicOpen] = useState(false);
+
+
+    // 
+
+    const [profilePic, setProfilePic] = useState(userInfo[currentLogAcc]?.profilePic)
+
 
 
     // console.log(Myarr)
@@ -53,18 +59,9 @@ export const MyProvider = ({ children }) => {
                     folowing: 0,
                     folower: 0,
                     image: [],
+                    profilePic:"https://img.icons8.com/?size=100&id=23264&format=png&color=000000",
                     post: [
-                        {
-                            imgUrl: [],
-                            like: 0,
-                            comment: [
-                                // {
-                                //     UserName: "",
-                                //     content: ""
-                                // }
-                            ],
-
-                        }
+                        
                     ]
                 }
             }
@@ -73,7 +70,6 @@ export const MyProvider = ({ children }) => {
         // navigate("/login")
 
     }
-
 
     // console.log(userInfo)
 
@@ -113,7 +109,7 @@ export const MyProvider = ({ children }) => {
 
 
     return (
-        <Mycontext.Provider value={{ userInfo, setUserInfo, submit, currentLogAcc, setCurrentLogAcc,posts, isProfPicOpen, setIsProfPicOpen }}>
+        <Mycontext.Provider value={{ userInfo, setUserInfo, submit, currentLogAcc, setCurrentLogAcc,posts, isProfPicOpen, setIsProfPicOpen,profilePic, setProfilePic }}>
             {children}
         </Mycontext.Provider>
     )

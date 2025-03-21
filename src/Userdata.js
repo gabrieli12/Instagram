@@ -1,6 +1,6 @@
 
 
-// localStorage.clear()
+localStorage.clear()
 
 const existAccounts = {
         

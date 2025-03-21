@@ -1,11 +1,50 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Mycontext } from '../MyContext'
 
 function UpdateProfilePic() {
-  const { isProfPicOpen, setIsProfPicOpen } = useContext(Mycontext)
+  const { isProfPicOpen, setIsProfPicOpen,profilePic, setProfilePic, setUserInfo, currentLogAcc, } = useContext(Mycontext)
+
+
+  useEffect(() => {
+    console.log(profilePic)
+    setUserInfo((prev) => {
+      return {
+        ...prev,
+        [currentLogAcc]: {
+          ...prev[currentLogAcc],
+          profilePic: profilePic
+        }
+      }
+    })
+  },[profilePic])
+  
 
   const handleImageUpload = (e) => {
-    console.log(e.target)
+    let file = e.target.files[0]
+
+
+
+
+
+    if(file){
+      let reader = new FileReader()
+
+      reader.onloadend = () => {
+        setProfilePic(reader.result)
+
+
+        console.log(profilePic)
+        
+      }
+
+      reader.readAsDataURL(file)
+
+      console.log(profilePic)
+    }
+
+   
+    
+    // console.log(reader)
   }
 
   return (

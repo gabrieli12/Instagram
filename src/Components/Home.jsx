@@ -211,52 +211,57 @@ function Home() {
             <div className='absolute flex flex-col gap-1 items-center py-3 top-[130px] right-[53%] translate-x-[50%] w-[35%]  '>
 
 
-                {posts.map((item, index) => {
+                {  
+                posts.length >0 ? 
+                    posts.map((item, index) => {
 
 
-                    // console.log(item.userId)
-                    // console.log(item.post)
-                    // console.log(userInfo[item.userId].profilePic)
-                    // console.log(userInfo[item.userId].username)
-                    return (
-                        <div key={index} className='w-full border-b-1 py-2 my-2 relative'>
-                            <div className='w-full flex items-center justify-between px-[12px] my-1'>
-                                <div className='flex items-center gap-[15px]'>
-                                    <img src={userInfo[item.userId].profilePic} alt="profile" className='w-[32px] h-[32px] rounded-full' />
-                                    <p>{userInfo[item.userId].username}</p>
+                        // console.log(item.userId)
+                        // console.log(item.post)
+                        // console.log(userInfo[item.userId].profilePic)
+                        // console.log(userInfo[item.userId].username)
+                        
+                        return (
+                            <div key={index} className='w-full border-b-1 py-2 my-2 relative'>
+                                <div className='w-full flex items-center justify-between px-[12px] my-1'>
+                                    <div className='flex items-center gap-[15px]'>
+                                        <img src={userInfo[item.userId]?.profilePic || "https://img.icons8.com/?size=100&id=23264&format=png&color=000000"} alt="profile" className='w-[32px] h-[32px] rounded-full' />
+                                        <p>{userInfo[item.userId].username}</p>
+                                    </div>
+    
+                                    <p>...</p>
                                 </div>
-
-                                <p>...</p>
-                            </div>
-                            <div className='relative'>
-                                <FaArrowAltCircleRight onClick={() => ArrowRight()} className={`block cursor-pointer absolute text-2xl mx-1 right-0 top-[50%]`} />
-                                <img src={item.imgUrl[0]} alt="post" />
-                                <FaArrowAltCircleLeft onClick={() =>
-                                    ArrowLeft()} className={`block cursor-pointer absolute text-2xl mx-1 left-0 top-[50%]`} />
-                            </div>
-                            <div className='flex items-center justify-between my-2'>
-                                <div className='flex items-center justify-start gap-2'>
-                                    <div className='z-10 relative' onClick={() => Addlike(item.id, item.userId)}><FaRegHeart className='cursor-pointer -z-10 relative' /></div>
-
-                                    <FaRegComment onClick={() => displayComent(item.id, item.userId)} />
-                                    <FaLocationArrow />
+                                <div className='relative'>
+                                    <FaArrowAltCircleRight onClick={() => ArrowRight()} className={`block cursor-pointer absolute text-2xl mx-1 right-0 top-[50%]`} />
+                                    <img src={item.imgUrl[0]} alt="post" />
+                                    <FaArrowAltCircleLeft onClick={() =>
+                                        ArrowLeft()} className={`block cursor-pointer absolute text-2xl mx-1 left-0 top-[50%]`} />
                                 </div>
-                                <CiSaveUp2 />
-                            </div>
-                            <div className='my-2'>
-                                <p>{`${item.like} Liked`}</p>
-                            </div>
-                            <div className='flex items-center justify-between'>
-                                <div className='flex items-center gap-2 w-full pr-1'>
-                                    <input type="text" value={valueOfcoment} onChange={(e) => setValueOfcoment(e.target.value)} className='w-full' placeholder='Add a comment...' />
-                                    <button className='cursor-pointer' onClick={() => AddComent(item.id, item.userId)}>Post</button>
+                                <div className='flex items-center justify-between my-2'>
+                                    <div className='flex items-center justify-start gap-2'>
+                                        <div className='z-10 relative' onClick={() => Addlike(item.id, item.userId)}><FaRegHeart className='cursor-pointer -z-10 relative' /></div>
+    
+                                        <FaRegComment onClick={() => displayComent(item.id, item.userId)} />
+                                        <FaLocationArrow />
+                                    </div>
+                                    <CiSaveUp2 />
                                 </div>
-
-                                <CiFaceSmile />
+                                <div className='my-2'>
+                                    <p>{`${item.like} Liked`}</p>
+                                </div>
+                                <div className='flex items-center justify-between'>
+                                    <div className='flex items-center gap-2 w-full pr-1'>
+                                        <input type="text" value={valueOfcoment} onChange={(e) => setValueOfcoment(e.target.value)} className='w-full' placeholder='Add a comment...' />
+                                        <button className='cursor-pointer' onClick={() => AddComent(item.id, item.userId)}>Post</button>
+                                    </div>
+    
+                                    <CiFaceSmile />
+                                </div>
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })
+                : ""}
+                
 
             </div>
 
