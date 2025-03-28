@@ -14,6 +14,7 @@ const existAccounts = {
         profilePic:"profile1.jpeg",
         post: [
             {
+                desc:"",
                 userId:"wolk1",
                 id: 0,
                 imgUrl: ["black.jpeg","bibila.jpg"],
@@ -27,6 +28,7 @@ const existAccounts = {
 
             },
             {
+                desc:"",
                 userId:"wolk1",
                 id: 1,
                 imgUrl: ["bibila.jpg"],
@@ -40,6 +42,7 @@ const existAccounts = {
 
             },
             {
+                desc:"",
                 userId:"wolk1",
                 id: 2,
                 imgUrl: ["black.jpeg"],
@@ -66,6 +69,7 @@ const existAccounts = {
         profilePic:"profil.rostom3.png",
         post: [
             {
+                desc:"",
                 userId:"wolk2",
                 id: 0,
                 imgUrl:["profil.rostom2.png","profil.rostom1.png"],
@@ -79,6 +83,7 @@ const existAccounts = {
 
             },
             {
+                desc:"",
                 userId:"wolk2",
                 id: 1,
                 imgUrl: ["profil.rostom1.png"],
@@ -93,6 +98,7 @@ const existAccounts = {
             }
             ,
             {
+                desc:"",
                 userId:"wolk2",
                 id: 2,
                 imgUrl: ["profil.rostom1.png"],
@@ -121,6 +127,7 @@ const existAccounts = {
         profilePic:"profile2 meli.jpg",
         post: [
             {
+                desc:"",
                 userId:"queen",
                 id: 0,
                 imgUrl:[ "meli.jpg","fiso.jpg"],
@@ -134,6 +141,7 @@ const existAccounts = {
 
             },
             {
+                desc:"",
                 userId:"queen",
                 id: 1,
                 imgUrl:[ "fiso.jpg"],
@@ -159,6 +167,7 @@ const existAccounts = {
         profilePic:"profile 3 gabriel.jpg",
         post: [
             {
+                desc:"",
                 userId:"wolk4",
                 id: 0,
                 imgUrl: ["group 4 best.jpg","group 4.jpg"],
@@ -172,6 +181,7 @@ const existAccounts = {
 
             },
             {
+                desc:"",
                 userId:"wolk4",
                 id: 1,
                 imgUrl: ["group 4.jpg"],

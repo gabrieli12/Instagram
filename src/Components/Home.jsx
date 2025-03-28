@@ -242,6 +242,7 @@ function Home() {
                                 <div className='my-2'>
                                     <p>{`${item.like} Liked`}</p>
                                 </div>
+                                <p>{item.desc}</p>
                                 <div className='flex items-center justify-between'>
                                     <div className='flex items-center gap-2 w-full pr-1'>
                                         <input type="text" value={valueOfcoment} onChange={(e) => setValueOfcoment(e.target.value)} className='w-full' placeholder='Add a comment...' />
