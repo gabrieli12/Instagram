@@ -13,6 +13,7 @@ export const MyProvider = ({ children }) => {
 
     const [currentLogAcc, setCurrentLogAcc] = useState(localStorage.getItem("currentLogAcc") || [])
 
+  
 
     localStorage.setItem("currentLogAcc", currentLogAcc)
 
@@ -22,14 +23,17 @@ export const MyProvider = ({ children }) => {
 
     const [isProfPicOpen, setIsProfPicOpen] = useState(false);
 
-
-    // 
+    //
 
     const [profilePic, setProfilePic] = useState(userInfo[currentLogAcc]?.profilePic)
 
+    // 
+    const [createPost, setCreatepost] = useState(false)
+    
 
 
-    // console.log(Myarr)
+
+    
 
     const submit = (data) => {
         //////////////////////////////////////
@@ -46,11 +50,9 @@ export const MyProvider = ({ children }) => {
         }
 
 
-
         setUserInfo((prev) => {
             return {
                 ...prev,
-
                 [uniqueId]: {
                     email: data.email,
                     password: data.password,
@@ -59,7 +61,7 @@ export const MyProvider = ({ children }) => {
                     folowing: 0,
                     folower: 0,
                     image: [],
-                    profilePic:"https://img.icons8.com/?size=100&id=23264&format=png&color=000000",
+                    profilePic:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
                     post: [
                         
                     ]
@@ -109,7 +111,9 @@ export const MyProvider = ({ children }) => {
 
 
     return (
-        <Mycontext.Provider value={{ userInfo, setUserInfo, submit, currentLogAcc, setCurrentLogAcc,posts, isProfPicOpen, setIsProfPicOpen,profilePic, setProfilePic }}>
+        <Mycontext.Provider value={{ userInfo, setUserInfo, submit, currentLogAcc, setCurrentLogAcc,posts, 
+            isProfPicOpen, setIsProfPicOpen,profilePic, 
+            setProfilePic,userInfo,createPost, setCreatepost}}>
             {children}
         </Mycontext.Provider>
     )

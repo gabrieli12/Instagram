@@ -1,4 +1,8 @@
 import React from 'react'
+
+import CreatePost from './CreatePost';
+
+
 import { GoHomeFill } from "react-icons/go";
 import { GoSearch } from "react-icons/go";
 import { IoCompassOutline } from "react-icons/io5";
@@ -25,11 +29,11 @@ function Asidemenu() {
     const [more, setMore] = useState(1)
     const [switchAcc, setSwitchAcc] = useState(false)
     const[appearance , setAppearance] = useState(false)
-
-
     /////
-    const { userInfo, currentLogAcc, setCurrentLogAcc } = useContext(Mycontext)
+    const { userInfo, currentLogAcc, setCurrentLogAcc,createPost, setCreatepost } = useContext(Mycontext)
     const [countChar, setCountChar] = useState(0)
+    // 
+   
 
 
 
@@ -49,8 +53,6 @@ function Asidemenu() {
     const logIn = (data) => {
         // e.preventDefault()
 
-
-
         for (let i in userInfo) {
             console.log(userInfo[i])
             if (userInfo[i].email === data.email && userInfo[i].password === data.password) {
@@ -64,19 +66,7 @@ function Asidemenu() {
                 setError(true)
             }
         }
-
-
-
-
-
-
-        // setEmail("")
-        // setPassword("")
-        // setCountChar(0)
         reset()
-
-
-
     }
 
     /////
@@ -126,7 +116,7 @@ function Asidemenu() {
                             <p className='max-[981px]:hidden text-[1em]'>Notification</p>
                         </button>
 
-                        <button className='flex items-center gap-3 px-[12px] py-[8px] text-[1em] w-full hover:bg-[#eeeeeec9] rounded-md cursor-pointer max-[981px]:justify-center'>
+                        <button onClick={() =>setCreatepost(true)} className='flex items-center gap-3 px-[12px] py-[8px] text-[1em] w-full hover:bg-[#eeeeeec9] rounded-md cursor-pointer max-[981px]:justify-center'>
                             <FaRegSquarePlus className='text-[1.8rem]' />
                             <p className='max-[981px]:hidden text-[1em]'>Create</p>
                         </button>
@@ -134,7 +124,7 @@ function Asidemenu() {
                         <button onClick={()=>{
                             navigate("/profile")
                         }} className='flex items-center gap-4 px-[12px] py-[8px] text-[1em] w-full hover:bg-[#eeeeeec9] rounded-md cursor-pointer max-[981px]:justify-center'>
-                            <img className=' rounded-full border border-[#dedede] ' width={27} src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" />
+                            <img className=' rounded-full border border-[#dedede] ' width={27} src={userInfo[currentLogAcc].profilePic} alt="" />
                             <p className='max-[981px]:hidden text-[1em]'>Profile</p>
                         </button>
 
@@ -281,6 +271,22 @@ function Asidemenu() {
                     </div>
                 </div>
             </div>
+
+
+            <CreatePost />
+{/* 
+            <div className={` ${createPost? "fixed":"hidden"} w-full h-full bg-[#000000ab]  flex items-center justify-center z-10`} >
+
+                <button className='cursor-pointer absolute top-4 right-3 text-2xl text-white' onClick={() => setCreatepost(false)}>x</button>
+                <div className='w-[500px] rounded-xl h-[500px] bg-white flex flex-col items-center justify-evenly gap-5'>
+                    <h1 className='text-[1.5em]  font-bold'>Create new Post</h1>
+                    <form className='h-[50%] flex flex-col items-center justify-center gap-5 w-full'>
+                        <input className='border border-[#52525252] bg-[#f5f5f5] w-[60%] px-3 py-[9px] text-[0.8em] rounded-xs outline-none' type="file" />
+                        <input className='border border-[#52525252] bg-[#f5f5f5] w-[60%] px-3 py-[9px] text-[0.8em] rounded-xs outline-none' type="text" placeholder='Title the post.' />
+                        <button className='bg-[#0093f5] text-white cursor-pointer p-1 rounded-lg font-bold  w-[35%]'>Post</button>
+                    </form>
+                </div>    
+            </div> */}
         </>
     )
 }

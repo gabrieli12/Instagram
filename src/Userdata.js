@@ -1,6 +1,6 @@
 
 
-localStorage.clear()
+
 
 const existAccounts = {
         
@@ -60,7 +60,7 @@ const existAccounts = {
         email: "rostomchagunava1994@gmail.com",
         password: "1234567",
         fullname: "Rostom Chagunava",
-        username: "daumorchilebeli",
+        username: "xonski",
         folowing: 5,
         folower: 5000,
         profilePic:"profil.rostom3.png",

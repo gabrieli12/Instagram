@@ -19,7 +19,7 @@ import { CiSaveUp2 } from "react-icons/ci";
 import { CiFaceSmile } from "react-icons/ci";
 
 import React from "react";
-import { use } from 'react';
+import Asideofcomment from './Asideofcomment';
 
 
 
@@ -27,9 +27,12 @@ import { use } from 'react';
 function Home() {
     const { userInfo, setUserInfo, currentLogAcc, setCurrentLogAcc, posts } = useContext(Mycontext)
     const [transform, setTransform] = useState(0)
-
+    // 
+    const [showComment, setShowComment] = useState(false)
+    ///////////////////////////////////////////
     // 
     const [valueOfcoment, setValueOfcoment] = useState('')
+    const [choosePostid, setChoosePostid] = useState(0)
 
 
 
@@ -52,7 +55,9 @@ function Home() {
 
     // //////////////////////
 
-    const Addlike = (id, userId) => {
+    const Addlike = (id, userId,item) => {
+
+        console.log(item)
 
         setUserInfo((prev) => {
             return {
@@ -96,14 +101,9 @@ function Home() {
     }
 
 
-    const displayComent = (id, userId) => {
-        // return (
-        //     <div>
-
-        //     </div>
-        // )
-
-        // }
+    const displayComent = (item) => {
+        setShowComment(true)
+        console.log(item.comment)
     }
 
     return (
@@ -115,7 +115,7 @@ function Home() {
                     <div className='w-[319px] h-[546] max-[1346px]:hidden '>
                         <div className='  flex flex-row-reverse items-center justify-between  '>
                             <div className='pl-5  flex flex-row-reverse items-center gap-2'>
-                                <img className=' rounded-full border border-[#ffffff] ' width={50} src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" />
+                                <img className=' rounded-full border border-[#ffffff] ' width={50} src={userInfo[currentLogAcc].profilePic} alt="" />
                                 <div className='flex flex-col items-end justify-center'>
                                     <p className='font-medium text-[0.9em]'>{userInfo[currentLogAcc]?.username}</p>
                                     <p className='text-[grey] text-[0.9em]'>{userInfo[currentLogAcc]?.fullname}</p>
@@ -137,7 +137,7 @@ function Home() {
                                     return (
                                         <div key={key} className='  flex flex-row-reverse items-center justify-between  '>
                                             <div className='flex flex-row-reverse items-center gap-2'>
-                                                <img className=' rounded-full border border-[#ffffff] ' width={50} src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" />
+                                                <img className='w-[50px] h-[50px] object-cover rounded-full border border-[#ffffff] '  src={user.profilePic} alt="" />
                                                 <div className='flex flex-col items-end justify-center'>
                                                     <p className='font-medium text-[0.9em]'>{user.username}</p>
                                                     <p className='text-[#8f8f8f] text-[0.8em] '>Suggested for you</p>
@@ -197,7 +197,7 @@ function Home() {
                                 Object.entries(userInfo).map(([key, user]) => {
                                     return (
                                         <div className='flex flex-col items-center justify-center' key={key}>
-                                            <img className=' rounded-full border border-[#ffffff] ' width={60} src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" />
+                                            <img className='object-cover w-[60px] h-[60px] rounded-full border border-[#ffffff] ' width={60} src={user.profilePic} alt="" />
                                             <p className=' text-[.7em] text-center mt-[5px]'>{user.username}</p>
                                         </div>
                                     )
@@ -215,12 +215,6 @@ function Home() {
                 posts.length >0 ? 
                     posts.map((item, index) => {
 
-
-                        // console.log(item.userId)
-                        // console.log(item.post)
-                        // console.log(userInfo[item.userId].profilePic)
-                        // console.log(userInfo[item.userId].username)
-                        
                         return (
                             <div key={index} className='w-full border-b-1 py-2 my-2 relative'>
                                 <div className='w-full flex items-center justify-between px-[12px] my-1'>
@@ -239,9 +233,8 @@ function Home() {
                                 </div>
                                 <div className='flex items-center justify-between my-2'>
                                     <div className='flex items-center justify-start gap-2'>
-                                        <div className='z-10 relative' onClick={() => Addlike(item.id, item.userId)}><FaRegHeart className='cursor-pointer -z-10 relative' /></div>
-    
-                                        <FaRegComment onClick={() => displayComent(item.id, item.userId)} />
+                                        <div className='z-10 relative' onClick={() => Addlike(item.id, item.userId,item)}><FaRegHeart className='cursor-pointer -z-10 relative' /></div>
+                                        <FaRegComment onClick={() => displayComent(item)} />
                                         <FaLocationArrow />
                                     </div>
                                     <CiSaveUp2 />
@@ -262,32 +255,12 @@ function Home() {
                     })
                 : ""}
                 
-
             </div>
 
-            {/* < div className='fixed top-0 bg-gray-900/50  w-screen h-screen border-1 flex items-center justify-center' >
-                <div className='w-[70%] h-[90%]  opacity-100 bg-white flex '>
-
-                    <img className='w-[50%]' src={`public/profil.rostom2.png`} alt="" />
-                    <div className='w-[50%] h-[100%] flex flex-col'>
-                        <div className='flex w-full items-center justify-between  border-b-1 p-3'>
-                            <div className='flex items-center gap-2'>
-                                <img className='w-[25px] h-[25px] rounded-full' src={`public/profil.rostom2.png`} alt="" />
-                                <p>{userInfo[currentLogAcc].username}</p>
-                            </div>
-                            <p>...</p>
-                        </div>
-                        <div>
-
-                        </div>
-
-
-                    </div>
-
-
-
-                </div>
-            </div> */}
+            < div className={`${showComment? "fixed" :"hidden"}  top-0 bg-gray-900/50  w-screen h-screen border-1 flex items-center justify-center`}>
+                {/* <button className='absolute top-0 right-0'>x</button> */}
+                <Asideofcomment setShowComment={setShowComment} displayComent={displayComent} userInfo={userInfo} currentLogAcc={currentLogAcc}/>
+            </div>
 
         </section >
     )
