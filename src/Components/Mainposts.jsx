@@ -14,7 +14,7 @@ function Mainposts() {
                 {Object.entries(userInfo).map(([key, user]) => {
                     user.post.map((element , index)=>{
                         return(
-                            <img src={element[0]} alt="" />
+                            <img src={element[0]}/>
                             
                         )
                     })

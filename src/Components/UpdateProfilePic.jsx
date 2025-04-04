@@ -24,11 +24,13 @@ function UpdateProfilePic() {
   }
 
   return (
-    <div className={`w-full h-full justify-center items-center absolute bg-gray-500/20 ${isProfPicOpen ? 'flex' : 'hidden'}`}>
-      <div className="flex flex-col justify-center items-center gap-5 bg-white p-20">
-        <h1>Change Profile Photo</h1>
-        <input type="file" id="" onChange={handleImageUpload} />
-        <button className="cursor-pointer" onClick={() => setIsProfPicOpen(false)}>Cancel</button>
+    <div className={`w-full h-full justify-center items-center fixed bg-[#0000009b] z-50  ${isProfPicOpen ? 'flex' : 'hidden'}`}>
+      <div className=" w-[400px]  flex flex-col  items-center   bg-white  rounded-xl">
+        <h1 className="text-[1.4em] border-b border-[#dbdbdb] w-full text-center py-5">Change Profile Photo</h1>
+        <label className="text-[#0095f6] font-bold border-b border-[#dbdbdb] w-full text-center py-3" htmlFor="uploadd"> Upload Photo</label>
+        <p className="text-[#ed4a57] font-bold border-b border-[#dbdbdb] w-full text-center py-3 cursor-pointer">Remove Current Photo</p>
+        <input className="hidden"  type="file" id="uploadd" onChange={handleImageUpload} />
+        <button className="cursor-pointer py-3" onClick={() => setIsProfPicOpen(false)}>Cancel</button>
       </div>
     </div>
   );

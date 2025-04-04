@@ -20,6 +20,9 @@ import { CiFaceSmile } from "react-icons/ci";
 
 import React from "react";
 import Asideofcomment from './Asideofcomment';
+import { HiOutlineEmojiHappy } from "react-icons/hi";
+import { LuSend } from "react-icons/lu";
+
 
 
 
@@ -55,7 +58,7 @@ function Home() {
 
     // //////////////////////
 
-    const Addlike = (id, userId,item) => {
+    const Addlike = (id, userId, item) => {
 
         console.log(item)
 
@@ -115,7 +118,7 @@ function Home() {
                     <div className='w-[319px] h-[546] max-[1346px]:hidden '>
                         <div className='  flex flex-row-reverse items-center justify-between  '>
                             <div className='pl-5  flex flex-row-reverse items-center gap-2'>
-                                <img className=' rounded-full border border-[#ffffff] ' width={50} src={userInfo[currentLogAcc].profilePic} alt="" />
+                                <img className=' w-[50px] h-[50px] object-cover rounded-full border border-[#ffffff] '  src={userInfo[currentLogAcc].profilePic} alt="" />
                                 <div className='flex flex-col items-end justify-center'>
                                     <p className='font-medium text-[0.9em]'>{userInfo[currentLogAcc]?.username}</p>
                                     <p className='text-[grey] text-[0.9em]'>{userInfo[currentLogAcc]?.fullname}</p>
@@ -137,7 +140,7 @@ function Home() {
                                     return (
                                         <div key={key} className='  flex flex-row-reverse items-center justify-between  '>
                                             <div className='flex flex-row-reverse items-center gap-2'>
-                                                <img className='w-[50px] h-[50px] object-cover rounded-full border border-[#ffffff] '  src={user.profilePic} alt="" />
+                                                <img className='w-[50px] h-[50px] object-cover rounded-full border border-[#ffffff] ' src={user.profilePic} alt="" />
                                                 <div className='flex flex-col items-end justify-center'>
                                                     <p className='font-medium text-[0.9em]'>{user.username}</p>
                                                     <p className='text-[#8f8f8f] text-[0.8em] '>Suggested for you</p>
@@ -176,95 +179,123 @@ function Home() {
                         </div>
                     </div>
 
-                    <div className='gio2 overflow-x-hidden relative z-0 w-[630px]  '>
-                        <div className={`${Object.keys(userInfo).length <= 8 ? "hidden" : "absolute"} absolute top-0 right-0 z-10`} onClick={() => {
-                            setTransform(transform - 50)
-                            console.log(Object.keys(userInfo).length)
+                    <div className='flex flex-col items-center justify-center'>
+                        <div className='gio2 overflow-x-hidden relative z-0 w-[630px]  '>
+                            <div className={`${Object.keys(userInfo).length <= 8 ? "hidden" : "absolute"} absolute top-0 right-0 z-10`} onClick={() => {
+                                setTransform(transform - 50)
+                                console.log(Object.keys(userInfo).length)
 
-                        }}>
-                            <IoIosArrowDroprightCircle />
+                            }}>
+                                <IoIosArrowDroprightCircle />
+                            </div>
+
+                            <div className={`${transform == 0 ? "hidden" : "absolute"} absolute left-0 z-1`} onClick={() => {
+                                setTransform(transform + 50)
+
+                            }}>
+                                <IoIosArrowDropleftCircle />
+                            </div>
+
+                            <div style={{ transform: `translateX(${transform}px` }} className={` flex items-center justify-center gap-5 duration-500 ${Object.keys(userInfo).length <= 8 ? "w-full" : "w-[700px]"}`}>
+                                {
+                                    Object.entries(userInfo).map(([key, user]) => {
+                                        return (
+                                            <div className='flex flex-col items-center justify-center' key={key}>
+                                                <img className='object-cover w-[60px] h-[60px] rounded-full border border-[#ffffff] ' width={60} src={user.profilePic} alt="" />
+                                                <p className=' text-[.7em] text-center mt-[5px]'>{user.username}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
+                        <div className=''>
 
-                        <div className={`${transform == 0 ? "hidden" : "absolute"} absolute left-0 z-1`} onClick={() => {
-                            setTransform(transform + 50)
 
-                        }}>
-                            <IoIosArrowDropleftCircle />
-                        </div>
-
-                        <div style={{ transform: `translateX(${transform}px` }} className={` flex items-center justify-center gap-5 duration-500 ${Object.keys(userInfo).length <= 8 ? "w-full" : "w-[700px]"}`}>
                             {
-                                Object.entries(userInfo).map(([key, user]) => {
-                                    return (
-                                        <div className='flex flex-col items-center justify-center' key={key}>
-                                            <img className='object-cover w-[60px] h-[60px] rounded-full border border-[#ffffff] ' width={60} src={user.profilePic} alt="" />
-                                            <p className=' text-[.7em] text-center mt-[5px]'>{user.username}</p>
-                                        </div>
-                                    )
-                                })
-                            }
+                                posts.length > 0 ?
+                                    posts.map((item, index) => {
+
+                                        return (
+                                            <div key={index} className='w-full border-b-1 border-[#dbdbdb] py-2 my-2 relative'>
+                                                <div className='w-full flex flex-row-reverse items-center justify-between px-[12px] my-1'>
+                                                    <div className='flex items-center gap-[15px]'>
+                                                        <p>{userInfo[item.userId].username}</p>
+                                                        <img src={userInfo[item.userId]?.profilePic || "https://img.icons8.com/?size=100&id=23264&format=png&color=000000"} alt="profile" className='w-[32px] h-[32px] rounded-full' />
+                                                    </div>
+
+                                                    <p>...</p>
+                                                </div>
+                                                <div className='relative'>
+                                                    {/* <FaArrowAltCircleRight onClick={() => ArrowRight()} className={`block cursor-pointer absolute text-2xl mx-1 right-0 top-[50%]`} /> */}
+
+                                                    <img onClick={() => ArrowRight()} className={`block cursor-pointer absolute text-2xl mx-1 right-0 top-[50%]`} src="https://cdn-icons-png.flaticon.com/512/15431/15431128.png" alt="" width={30} height={30} />
+                                                    <img src={item.imgUrl[0]} alt="post" className='w-[468px] h-[585px] object-cover rounded-xs'/>
+                                                    {/* <FaArrowAltCircleLeft onClick={() =>
+                                                        ArrowLeft()} className={`block cursor-pointer absolute text-2xl mx-1 left-0 top-[50%]`} /> */}
+                                                        <img onClick={() =>
+                                                        ArrowLeft()} className={`block cursor-pointer absolute text-2xl mx-1 left-0 top-[50%] rotate-180`} src="https://cdn-icons-png.flaticon.com/512/15431/15431128.png" alt="" width={30} />
+                                                        
+                                                </div>
+                                                <div className='flex flex-row-reverse items-center justify-between my-2'>
+                                                    <div className='flex items-center justify-start gap-4'>
+                                                        <LuSend className='text-[1.3em]' />
+                                                        <img src='https://cdn-icons-png.flaticon.com/512/3031/3031126.png' width={23} onClick={() => displayComent(item)} />
+                                                        <div className='z-10 relative' onClick={() => Addlike(item.id, item.userId, item)}><FaRegHeart className='cursor-pointer -z-10 relative text-[1.3em]' /></div>
+                                                    </div>
+                                                    <img src='https://cdn-icons-png.flaticon.com/512/7324/7324262.png' width={20}/>
+                                                </div>
+                                                <div className='my-2 flex flex-row-reverse'>
+                                                    <p className='flex flex-row-reverse gap-1 font-medium'>{`${item.like}`}<span>likes</span></p>
+                                                </div>
+                                                <p>{item.desc}</p>
+                                                <div className='flex flex-row-reverse  items-center justify-between'>
+                                                    <div className='flex items-center gap-2 w-full pr-1'>
+                                                        <input  type="text" value={valueOfcoment} onChange={(e) => setValueOfcoment(e.target.value)} className='ltr w-full ' placeholder='Add a comment...' />
+                                                        {/* <button className='cursor-pointer' onClick={() => AddComent(item.id, item.userId)}>Post</button> */}
+                                                    </div>
+                                                    <HiOutlineEmojiHappy className='text-[gray] text-[1em]' />
+
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                    : ""}
+
                         </div>
+
                     </div>
                 </div>
 
             </div>
-            <div className='absolute flex flex-col gap-1 items-center py-3 top-[130px] right-[53%] translate-x-[50%] w-[35%]  '>
 
 
-                {  
-                posts.length >0 ? 
-                    posts.map((item, index) => {
-
-                        return (
-                            <div key={index} className='w-full border-b-1 py-2 my-2 relative'>
-                                <div className='w-full flex items-center justify-between px-[12px] my-1'>
-                                    <div className='flex items-center gap-[15px]'>
-                                        <img src={userInfo[item.userId]?.profilePic || "https://img.icons8.com/?size=100&id=23264&format=png&color=000000"} alt="profile" className='w-[32px] h-[32px] rounded-full' />
-                                        <p>{userInfo[item.userId].username}</p>
-                                    </div>
-    
-                                    <p>...</p>
-                                </div>
-                                <div className='relative'>
-                                    <FaArrowAltCircleRight onClick={() => ArrowRight()} className={`block cursor-pointer absolute text-2xl mx-1 right-0 top-[50%]`} />
-                                    <img src={item.imgUrl[0]} alt="post" />
-                                    <FaArrowAltCircleLeft onClick={() =>
-                                        ArrowLeft()} className={`block cursor-pointer absolute text-2xl mx-1 left-0 top-[50%]`} />
-                                </div>
-                                <div className='flex items-center justify-between my-2'>
-                                    <div className='flex items-center justify-start gap-2'>
-                                        <div className='z-10 relative' onClick={() => Addlike(item.id, item.userId,item)}><FaRegHeart className='cursor-pointer -z-10 relative' /></div>
-                                        <FaRegComment onClick={() => displayComent(item)} />
-                                        <FaLocationArrow />
-                                    </div>
-                                    <CiSaveUp2 />
-                                </div>
-                                <div className='my-2'>
-                                    <p>{`${item.like} Liked`}</p>
-                                </div>
-                                <p>{item.desc}</p>
-                                <div className='flex items-center justify-between'>
-                                    <div className='flex items-center gap-2 w-full pr-1'>
-                                        <input type="text" value={valueOfcoment} onChange={(e) => setValueOfcoment(e.target.value)} className='w-full' placeholder='Add a comment...' />
-                                        <button className='cursor-pointer' onClick={() => AddComent(item.id, item.userId)}>Post</button>
-                                    </div>
-    
-                                    <CiFaceSmile />
-                                </div>
-                            </div>
-                        )
-                    })
-                : ""}
-                
-            </div>
-
-            < div className={`${showComment? "fixed" :"hidden"}  top-0 bg-gray-900/50  w-screen h-screen border-1 flex items-center justify-center`}>
+            < div className={`${showComment ? "fixed" : "hidden"}  top-0 bg-gray-900/50  w-screen h-screen border-1 flex items-center justify-center`}>
                 {/* <button className='absolute top-0 right-0'>x</button> */}
-                <Asideofcomment setShowComment={setShowComment} displayComent={displayComent} userInfo={userInfo} currentLogAcc={currentLogAcc}/>
+                <Asideofcomment setShowComment={setShowComment} displayComent={displayComent} userInfo={userInfo} currentLogAcc={currentLogAcc} />
             </div>
 
         </section >
     )
 }
 
-export default Home 
+export default Home
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -17,7 +17,7 @@ const existAccounts = {
                 desc:"",
                 userId:"wolk1",
                 id: 0,
-                imgUrl: ["black.jpeg","bibila.jpg"],
+                imgUrl: ["bibila.jpg"],
                 like: 10,
                 comment: [
                      {
@@ -196,7 +196,6 @@ const existAccounts = {
             }
         ]
     },
-
 
 
 }

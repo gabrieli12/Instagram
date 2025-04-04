@@ -103,19 +103,19 @@ function Profile() {
 
                 <div className=' flex items-center justify-center mt-[50px] w-[113%] '>
 
-                    <div className='flex flex-col justify-center items-center border-t-1 border-[#dbdbdb] w-[35%]'>
+                    <div className='flex flex-col justify-center items-center border-t-1 border-[#dbdbdb] w-[935px] max-[1320px]:w-[55%]'>
                         <div className='flex w-[30%] justify-between gap-7'>
                             <div className='flex  items-center gap-1 py-[20px] border-t-1  '>
-                                <img src="public/post.png" alt="" className='w-[15px]' />
-                                <p className='text-[10px]'>POSTS</p>
+                                <img src="https://cdn-icons-png.flaticon.com/512/923/923137.png" alt="" className='w-[15px]' />
+                                <p className='text-[0.8em] font-medium'>POSTS</p>
                             </div>
-                            <div className='flex items-center gap-1 py-[20px] border-t-1 '>
-                                <img src="public/saved.png" alt="" className='w-[15px]' />
-                                <p className='text-[10px]'>SAVED</p>
+                            <div className='flex items-center gap-1 py-[20px]  '>
+                                <img src="https://cdn-icons-png.flaticon.com/512/9511/9511721.png" alt="" className='w-[15px]' />
+                                <p className='text-[0.8em] font-medium text-[#bababa]'>SAVED</p>
                             </div>
-                            <div className='flex items-center gap-1 py-[20px] border-t-1 '>
-                                <img src="public/tagger.png" alt="" className='w-[15px]' />
-                                <p className='text-[10px]'>TAGGED</p>
+                            <div className='flex items-center gap-1 py-[20px]  '>
+                                <img src="https://cdn-icons-png.flaticon.com/512/17847/17847702.png" alt="" className='w-[15px]' />
+                                <p className='text-[0.8em] font-medium text-[#bababa]'>TAGGED</p>
                             </div>
                         </div>
                         <div className='grid grid-cols-3 gap-1'>

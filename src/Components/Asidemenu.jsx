@@ -27,6 +27,7 @@ import { useForm } from "react-hook-form"
 function Asidemenu() {
 
     const [more, setMore] = useState(1)
+    const [moreBold , setMoreBold] = useState(false)
     const [switchAcc, setSwitchAcc] = useState(false)
     const[appearance , setAppearance] = useState(false)
     /////
@@ -76,7 +77,7 @@ function Asidemenu() {
 
     return (
         <>
-            <aside className='h-screen fixed  border-r w-[245px]  flex flex-col justify-between border-[#dadada] px-[12px] pt-[8px] pb-[20px] min-[1508px]:w-[338px] max-[981px]:w-[100px]'>
+            <aside className='h-screen fixed z-10  border-r w-[245px]  flex flex-col justify-between border-[#dadada] px-[12px] pt-[8px] pb-[20px] min-[1508px]:w-[338px] max-[981px]:w-[100px]'>
                 <div>
                     <div className='px-[12px] pt-[25px] max-[981px]:flex items-center justify-center '>
                         <h1 className='danceingScript font-bold text-[2em] cursor-pointer max-[981px]:hidden'>Intagram</h1>
@@ -124,7 +125,7 @@ function Asidemenu() {
                         <button onClick={()=>{
                             navigate("/profile")
                         }} className='flex items-center gap-4 px-[12px] py-[8px] text-[1em] w-full hover:bg-[#eeeeeec9] rounded-md cursor-pointer max-[981px]:justify-center'>
-                            <img className=' rounded-full border border-[#dedede] ' width={27} src={userInfo[currentLogAcc].profilePic} alt="" />
+                            <img className=' w-[35px] h-[35px] object-cover rounded-full border border-[#ffffff]'  src={userInfo[currentLogAcc].profilePic} alt="" />
                             <p className='max-[981px]:hidden text-[1em]'>Profile</p>
                         </button>
 
@@ -136,9 +137,9 @@ function Asidemenu() {
 
                 <div className='relative'>
 
-                    <div style={{ boxShadow: "0px 3px 11px 1px rgba(0,0,0,0.12" }} className={`${appearance?"absolute" : "hidden"}  absolute w-[266px]  -top-30  rounded-2xl  max-[1508px]:w-[230px] max-[981px]:left-23 max-[981px]:w-[265px]`}>
+                    <div style={{ boxShadow: "0px 3px 11px 1px rgba(0,0,0,0.12" }} className={`${appearance?"absolute" : "hidden"}  absolute w-[266px]  -top-30  rounded-2xl   max-[1508px]:w-[230px] max-[981px]:left-23 max-[981px]:w-[265px]`}>
 
-                        <div className='flex flex-col'>
+                        <div className='flex flex-col z-10'>
                             <div className='flex items-center justify-between  border-b border-[#8080803a] w-full'>
                                 <div className='p-[15px]  flex items-center gap-3 '>
                                     <img onClick={()=>{
@@ -163,9 +164,9 @@ function Asidemenu() {
                     </div>
 
 
-                    <div style={{ boxShadow: "0px 3px 11px 1px rgba(0,0,0,0.12" }} className={`${more % 2 != 0 ? "hidden" : "absolute"} z-50 absolute w-[265px] h-[410px] -top-105 p-[8px] rounded-2xl  max-[1508px]:w-[230px] max-[981px]:left-23 max-[981px]:w-[265px]`}>
+                    <div style={{ boxShadow: "0px 3px 11px 1px rgba(0,0,0,0.12" }} className={`${more % 2 != 0 ? "hidden" : "absolute"} absolute bg-white w-[265px] h-[410px] -top-105 p-[8px] rounded-2xl  max-[1508px]:w-[230px] max-[981px]:left-23 max-[981px]:w-[265px]`}>
 
-                        <div className='flex flex-col border-b-4 border-[#eeeeeec9]'>
+                        <div className=' flex flex-col border-b-4 border-[#eeeeeec9]'>
                             <div className='w-full hover:bg-[#eeeeeec9] p-[16px]   rounded-md'>
                                 <button className='flex items-center gap-3'>
                                     <img src="https://cdn-icons-png.flaticon.com/512/5693/5693241.png" alt="" width={19} />
@@ -227,18 +228,19 @@ function Asidemenu() {
                     </div>
                     <button onClick={() => {
                         setMore(more + 1)
+                        setMoreBold(more % 2 != 0 ? true : false)
                     }} className='flex items-center gap-3 px-[12px] py-[8px] text-[1em] w-full hover:bg-[#eeeeeec9] rounded-md cursor-pointer max-[981px]:justify-center'>
 
                         <TiThMenu className={`${more % 2 == 0 ? "block" : "hidden"} text-[1.8rem]`} />
                         <RiMenuLine className={`${more % 2 != 0 ? "block" : "hidden"} text-[1.8rem]`} />
-                        <p className={`${more % 2 == 0 ? "font-bold" : "font-normal"} max-[981px]:hidden text-[1em]`}>More</p>
+                        <p className={`${moreBold ? "font-bold" : "font-normal"} max-[981px]:hidden text-[1em]`}>More</p>
                     </button>
                 </div>
             </aside>
-            <div className={`${switchAcc ? "absolute" : "hidden"}  absolute h-screen w-full z-10 bg-[#000000ab] flex items-center justify-center`}>
+            <div className={`${switchAcc ? "fixed" : "hidden"}  fixed h-screen w-full z-50 bg-[#000000ab] flex items-center justify-center`}>
                 <div className='w-[400px] h-[463px] '>
                     <div className='flex flex-col gap-3'>
-                        <div className='text-black bg-white rounded-xl  flex flex-col items-center justify-center pt-[20px] gap-7  relative h-[435px] px-[65px]' >
+                        <div className='text-black bg-white rounded-xl z-10 flex flex-col items-center justify-center pt-[20px] gap-7  relative h-[435px] px-[65px]' >
                             <div onClick={() => {
                                 setSwitchAcc(false)
                             }} className='absolute top-4 right-4 cursor-pointer'>
